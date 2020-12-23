@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LoginsSample</string>
+
+    <!-- Údaje jsou z testovací fb účtu apliace GeoSeznamka -->
+    <string name="facebook_app_id" translatable="false">884668995602957</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb884668995602957</string>
+</resources>
