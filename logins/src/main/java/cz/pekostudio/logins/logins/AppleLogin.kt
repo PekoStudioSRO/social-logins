@@ -30,6 +30,10 @@ class AppleLogin(private val activity: AppCompatActivity): LoginElement<String> 
     private lateinit var invisibleButton: SignInWithAppleButton
     private val calllback = AppleLoginCallback()
 
+    init {
+        init(activity)
+    }
+
     override var onSuccess: ((String) -> Unit)? = null
 
     override fun init(activity: AppCompatActivity) {

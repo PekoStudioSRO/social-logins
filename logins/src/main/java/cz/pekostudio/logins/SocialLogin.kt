@@ -29,13 +29,10 @@ object SocialLogin {
         facebookLogin = FacebookLogin(activity)
         googleLogin = GoogleLogin(activity)
         appleLogin = AppleLogin(activity)
-
-        multiple(facebookLogin, googleLogin, appleLogin) {
-            it.init(activity)
-        }
     }
 
     /**
+     * Lambda is invoked, when login was sucesfull
      * @return -> Parameter in lambda is token given by sdks, can be null
      */
     fun login(type: Type, onLogin: (String?) -> Unit) {

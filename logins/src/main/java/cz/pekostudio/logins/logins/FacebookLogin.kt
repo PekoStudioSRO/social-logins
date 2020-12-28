@@ -39,6 +39,10 @@ class FacebookLogin(private val activity: AppCompatActivity): LoginElement<Acces
     override var onSuccess: ((AccessToken) -> Unit)? = null
 
 
+    init {
+        init(activity)
+    }
+
     override fun init(activity: AppCompatActivity) {
 
         if (isLoggedIn && expired)

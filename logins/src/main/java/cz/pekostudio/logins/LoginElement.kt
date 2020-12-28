@@ -16,7 +16,8 @@ interface LoginElement<R> {
     var onSuccess: ((R) -> Unit)?
 
     /**
-     * use this to initialize configs/options/other necessary things
+     * call this method in primary constructor and
+     * use it to initialize configs/options/other necessary things
      */
     fun init(activity: AppCompatActivity)
 

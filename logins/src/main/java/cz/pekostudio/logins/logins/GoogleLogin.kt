@@ -39,8 +39,9 @@ class GoogleLogin(private val activity: AppCompatActivity): LoginElement<GoogleS
         }
     }
 
-
-
+    init {
+        init(activity)
+    }
 
     override var onSuccess: ((GoogleSignInAccount?) -> Unit)? = null
 

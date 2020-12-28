@@ -17,6 +17,10 @@ class MainActivity : AppCompatActivity() {
     lateinit var facebookButton: MaterialButton
     lateinit var appleButton: MaterialButton
 
+    lateinit var facebookLogin: FacebookLogin
+    lateinit var googleLogin: GoogleLogin
+    lateinit var appleLogin: AppleLogin
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -25,6 +29,14 @@ class MainActivity : AppCompatActivity() {
         facebookButton = findViewById(R.id.facebook_login)
         appleButton = findViewById(R.id.apple_login)
 
+        facebookLogin = FacebookLogin(this)
+        googleLogin = GoogleLogin(this)
+        appleLogin = AppleLogin(this)
+
+        /**
+         * apple and google login needs initialization in some activity even if you
+         * want to use SocialLogin object
+         */
         AppleLogin.config {
             clientId = packageName
             redirectUri = "todo uri"
@@ -41,6 +53,7 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         SocialLogin.logout()
+
     }
 
     private fun simpleLogin() {
@@ -66,9 +79,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun customLogin() {
-        val facebookLogin = FacebookLogin(this)
-        val googleLogin = GoogleLogin(this)
-        val appleLogin = AppleLogin(this)
+
 
         multiple(facebookLogin, googleLogin, appleLogin) {
             it.init(this)
@@ -95,6 +106,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         SocialLogin.onActivityResult(requestCode, resultCode, data)
+        
+        //or
+        facebookLogin.onActivityResult(requestCode, resultCode, data)
+        googleLogin.onActivityResult(requestCode, resultCode, data)
     }
 }
